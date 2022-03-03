@@ -4,8 +4,8 @@
 .Spotlight-V100
 Thumbs.db
 desktop.ini
-.gz
-.p
-.pickle
-.joblib
+*.gz
+*.p
+*.pickle
+*.joblib
 
