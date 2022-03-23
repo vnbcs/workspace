@@ -26,29 +26,29 @@ gbr = GradientBoostingRegressor()
 pipe = Pipeline([('model',svr)])
 
 all_params = [
-    {'model' : [svr], 'model__kernel' : ['linear'],
-    "model__gamma" : [1e-2,1e-3,1e-4,"auto"], "model__C" : np.logspace(-4, 4, 5)
-    },
-    {'model' : [ridge], 'model__alpha' : np.logspace(-4, 4, 5),
-    'model__random_state' : [0], 'model__solver' : ['auto','lsqr','saga']
-    },
-    {'model' : [lasso], 'model__alpha' : np.logspace(-4, 4, 5),
-    'model__random_state' : [0], 'model__selection' : ['cyclic','random']
-    },
-    {'model' : [en], 'model__alpha' : np.logspace(-4, 4, 5),
-    'model__random_state' : [0], 'model__l1_ratio' : np.logspace(-4, 0, 5),
-    'model__selection' : ['cyclic','random']
+#     {'model' : [svr], 'model__kernel' : ['linear'],
+#     "model__gamma" : [1e-2,1e-3,1e-4,"auto"], "model__C" : np.logspace(-4, 4, 5)
+#     },
+#     {'model' : [ridge], 'model__alpha' : np.logspace(-4, 4, 5),
+#     'model__random_state' : [0], 'model__solver' : ['auto','lsqr','saga']
+#     },
+#     {'model' : [lasso], 'model__alpha' : np.logspace(-4, 4, 5),
+#     'model__random_state' : [0], 'model__selection' : ['cyclic','random']
+#     },
+#     {'model' : [en], 'model__alpha' : np.logspace(-4, 4, 5),
+#     'model__random_state' : [0], 'model__l1_ratio' : np.logspace(-4, 0, 5),
+#     'model__selection' : ['cyclic','random']
+#     }
+#    ,
+    {'model' : [gbr], 'model__learning_rate' : np.logspace(-3, -1, 3),
+    'model__random_state' : [0], 'model__n_estimators' : [int(x) for x in np.logspace(1,3,3)],
+    'model__n_iter_no_change': [50], 'model__max_depth': [2,4,6,8]
     }
-    #,
-    #{'model' : [gbr], 'model__learning_rate' : np.logspace(-4, 4, 5),
-    #'model__random_state' : [0], 'model__n_estimators' : np.logspace(1,3,3),
-    #'model__n_iter_no_change': [50]
-    #}
 
 ]
 
 print("fitting models...")
-all_gs = GridSearchCV(pipe, all_params, cv = 5, scoring=scorer, verbose=1)
+all_gs = GridSearchCV(pipe, all_params, cv = 2, scoring=scorer, verbose=1)
 all_gs.fit(X_train,y_train)
 
 dump(all_gs, '../files/fingerprint_all_gs.joblib')
