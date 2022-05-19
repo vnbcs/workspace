@@ -5,9 +5,9 @@ import pandas as pd
 import numpy as np
 import nibabel as nib
 from tqdm import tqdm
-import pickle
+import time
 
-serv = "/../Volumes/project/Hanson/"
+serv = "/../Volumes/Hanson/"
 fold = "Internal_MRI_Projects/CEDAR_MRI/Projects/nilearn_test/new_download"
 
 def clean_img_dataloader(folder, subject):
@@ -101,8 +101,7 @@ all_tups = []
 
 for e, batch in enumerate(chunked_subj_folds):
     print("\n\nrunning batch " + str(e + 1))
-    tups = clean_img_batchload(serv+fold, batch)
-    pickle.dump(tups, open("../files/CEDAR_processed_batch" + str(e+1) + ".p", "wb"))
+    tups = clean_img_batchload("./", batch)
     all_tups.extend(tups)
     
 pickle.dump(all_tups, open("../files/CEDAR_processed_all.p", "wb"))
