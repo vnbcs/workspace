@@ -8,4 +8,4 @@ desktop.ini
 *.p
 *.pickle
 *.joblib
-
+*.nii
