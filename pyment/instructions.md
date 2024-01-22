@@ -24,4 +24,4 @@ Requirements:
     docker://estenhl/sfcn-reg-predict-brain-age
 ```
 
-The predicted brainage can be found in ba_preds/predictions.csv.
+The predicted brainage can be found in `ba_preds/predictions.csv`.
