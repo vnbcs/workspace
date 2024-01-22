@@ -15,8 +15,8 @@ Requirements:
 4. Create fake age labels OR create a CSV containing subject ages in the folder `pyment_brainage/cropped`. The file must be named `labels.csv`. To create fake age labels run: `python3.10 STEP3_fakeagelabels.py`
 5. Within your pyment output folder, create a folder called `ba_preds`.
 6. Within pyment output folder, run pyment.
-    + ```bash
-    singularity run --mount type=bind,source=cropped,target=/images --mount type=bind,source=ba_preds,target=/predictions docker://estenhl/sfcn-reg-predict-brain-age
-    ```
     + If you are using Apptainer or Docker, change `singularity run` to the appropriate command.
+```bash
+    singularity run --mount type=bind,source=cropped,target=/images --mount type=bind,source=ba_preds,target=/predictions docker://estenhl/sfcn-reg-predict-brain-age
+```
 
