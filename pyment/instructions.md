@@ -1,4 +1,6 @@
-All files have commented instructions at the top. Read the comments in addition to this file.
+All files have commented instructions at the top. Read the comments in addition to this file. 
+
+Depending on the quantity of data, this may take a decent amount of time to run. I recommend using tmux or a job scheduler (i.e. slurm).
 
 Requirements:
 - Freesurfer-processed data
@@ -17,6 +19,9 @@ Requirements:
 6. Within pyment output folder, run pyment.
     + If you are using Apptainer or Docker, change `singularity run` to the appropriate command.
 ```bash
-    singularity run --mount type=bind,source=cropped,target=/images --mount type=bind,source=ba_preds,target=/predictions docker://estenhl/sfcn-reg-predict-brain-age
+    singularity run --mount type=bind,source=cropped,target=/images \
+    --mount type=bind,source=ba_preds,target=/predictions \
+    docker://estenhl/sfcn-reg-predict-brain-age
 ```
 
+The predicted brainage can be found in ba_preds/predictions.csv.
